@@ -324,9 +324,9 @@ function FinderPatternFinder() {
     this.selectBestPatterns = function() {
 
         var startSize = this.possibleCenters.length;
-        if (startSize < 3) {
+        if (!!qrcode.debug && startSize < 3) {
             // Couldn't find enough finder patterns
-            console.error("Couldn't find enough finder patterns (found " + startSize +")");
+            console.warn("Couldn't find enough finder patterns (found " + startSize +")");
         }
 
         // Filter outlier possibilities whose module size is too different
@@ -536,8 +536,12 @@ function FinderPatternFinder() {
         }
 
         var patternInfo = this.selectBestPatterns();
-        qrcode.orderBestPatterns(patternInfo);
-
-        return new FinderPatternInfo(patternInfo);
+        
+        if(patternInfo[0] !== undefined
+        && patternInfo[1] !== undefined
+        && patternInfo[2] !== undefined) {
+            qrcode.orderBestPatterns(patternInfo);
+            return new FinderPatternInfo(patternInfo);
+        }
     };
 }

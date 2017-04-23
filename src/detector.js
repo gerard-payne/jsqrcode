@@ -351,8 +351,12 @@ function Detector(image) {
 
 
     this.detect = function() {
-        var info = new FinderPatternFinder().findFinderPattern(this.image);
+        var finder = new FinderPatternFinder(),
+            patterns = finder.findFinderPattern(this.image);
 
-        return this.processFinderPatternInfo(info);
+        if(!!patterns) {
+            var result = this.processFinderPatternInfo(patterns);
+            return result;
+        }
     }
 }

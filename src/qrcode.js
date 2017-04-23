@@ -135,9 +135,10 @@ qrcode.decode = function(src) {
         qrcode.height = canvas_qr.height;
         qrcode.imagedata = context.getImageData(0, 0, qrcode.width, qrcode.height);
         qrcode.result = qrcode.process(context);
-        if (qrcode.callback != null)
+        if (qrcode.callback != null && qrcode.result) {
             qrcode.callback(qrcode.result);
-        return qrcode.result;
+            return qrcode.result;
+        }
     } else {
         var image = new Image();
         image.crossOrigin = "Anonymous";
@@ -257,16 +258,17 @@ qrcode.process = function(ctx) {
         ctx.putImageData(qrcode.imagedata, 0, 0);
     }
 
+    if(!!qRCodeMatrix) {
+        var reader = Decoder.decode(qRCodeMatrix.bits);
+        var data = reader.DataByte;
+        var str = "";
+        for (var i = 0; i < data.length; i++) {
+            for (var j = 0; j < data[i].length; j++)
+                str += String.fromCharCode(data[i][j]);
+        }
 
-    var reader = Decoder.decode(qRCodeMatrix.bits);
-    var data = reader.DataByte;
-    var str = "";
-    for (var i = 0; i < data.length; i++) {
-        for (var j = 0; j < data[i].length; j++)
-            str += String.fromCharCode(data[i][j]);
+        return qrcode.decode_utf8(str);
     }
-
-    return qrcode.decode_utf8(str);
 }
 
 qrcode.getPixel = function(x, y) {
