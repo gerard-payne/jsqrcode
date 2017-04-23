@@ -38,7 +38,7 @@ function DataBlock(numDataCodewords, codewords) {
 DataBlock.getDataBlocks = function(rawCodewords, version, ecLevel) {
 
     if (rawCodewords.length != version.TotalCodewords) {
-        throw "ArgumentException";
+        console.error("ArgumentException");
     }
 
     // Figure out the number and size of data blocks used by this version and

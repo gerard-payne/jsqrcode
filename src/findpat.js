@@ -326,7 +326,7 @@ function FinderPatternFinder() {
         var startSize = this.possibleCenters.length;
         if (startSize < 3) {
             // Couldn't find enough finder patterns
-            throw "Couldn't find enough finder patterns (found " + startSize + ")"
+            console.error("Couldn't find enough finder patterns (found " + startSize +")");
         }
 
         // Filter outlier possibilities whose module size is too different
@@ -368,7 +368,6 @@ function FinderPatternFinder() {
         }
 
         if (this.possibleCenters.length > 3) {
-            // Throw away all but those first size candidate points we found.
             this.possibleCenters.sort(function(a, b) {
                 if (a.count > b.count) {
                     return -1; }

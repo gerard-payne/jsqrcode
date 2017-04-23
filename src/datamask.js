@@ -27,7 +27,7 @@ var DataMask = {};
 
 DataMask.forReference = function(reference) {
     if (reference < 0 || reference > 7) {
-        throw "System.ArgumentException";
+        console.error("System.ArgumentException");
     }
     return DataMask.DATA_MASKS[reference];
 }

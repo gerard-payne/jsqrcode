@@ -25,7 +25,7 @@
 
 function GF256Poly(field, coefficients) {
     if (coefficients == null || coefficients.length == 0) {
-        throw "System.ArgumentException";
+        console.error("System.ArgumentException");
     }
     this.field = field;
     var coefficientsLength = coefficients.length;
@@ -84,7 +84,7 @@ function GF256Poly(field, coefficients) {
 
     this.addOrSubtract = function(other) {
         if (this.field != other.field) {
-            throw "GF256Polys do not have same GF256 field";
+            console.error("GF256Polys do not have same GF256 field");
         }
         if (this.Zero) {
             return other;
@@ -114,7 +114,7 @@ function GF256Poly(field, coefficients) {
     }
     this.multiply1 = function(other) {
         if (this.field != other.field) {
-            throw "GF256Polys do not have same GF256 field";
+            console.error("GF256Polys do not have same GF256 field");
         }
         if (this.Zero || other.Zero) {
             return this.field.Zero;
@@ -148,7 +148,7 @@ function GF256Poly(field, coefficients) {
     }
     this.multiplyByMonomial = function(degree, coefficient) {
         if (degree < 0) {
-            throw "System.ArgumentException";
+            console.error("System.ArgumentException");
         }
         if (coefficient == 0) {
             return this.field.Zero;
@@ -163,10 +163,10 @@ function GF256Poly(field, coefficients) {
     }
     this.divide = function(other) {
         if (this.field != other.field) {
-            throw "GF256Polys do not have same GF256 field";
+            console.error("GF256Polys do not have same GF256 field");
         }
         if (other.Zero) {
-            throw "Divide by 0";
+            console.error("Divide by 0");
         }
 
         var quotient = this.field.Zero;

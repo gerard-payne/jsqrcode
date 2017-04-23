@@ -27,7 +27,7 @@ function BitMatrix(width, height) {
     if (!height)
         height = width;
     if (width < 1 || height < 1) {
-        throw "Both dimensions must be greater than 0";
+        console.error("Both dimensions must be greater than 0");
     }
     this.width = width;
     this.height = height;
@@ -48,7 +48,7 @@ function BitMatrix(width, height) {
     });
     this.__defineGetter__("Dimension", function() {
         if (this.width != this.height) {
-            throw "Can't call getDimension() on a non-square matrix";
+            console.error("Can't call getDimension() on a non-square matrix");
         }
         return this.width;
     });
@@ -73,15 +73,15 @@ function BitMatrix(width, height) {
     }
     this.setRegion = function(left, top, width, height) {
         if (top < 0 || left < 0) {
-            throw "Left and top must be nonnegative";
+            console.error("Left and top must be nonnegative");
         }
         if (height < 1 || width < 1) {
-            throw "Height and width must be at least 1";
+            console.error("Height and width must be at least 1");
         }
         var right = left + width;
         var bottom = top + height;
         if (bottom > this.height || right > this.width) {
-            throw "The region must fit inside the matrix";
+            console.error("The region must fit inside the matrix");
         }
         for (var y = top; y < bottom; y++) {
             var offset = y * this.rowSize;

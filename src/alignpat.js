@@ -226,7 +226,7 @@ function AlignmentPatternFinder(image, startX, startY, width, height, moduleSize
             return this.possibleCenters[0];
         }
 
-        throw "Couldn't find enough alignment patterns";
+        console.error("Couldn't find enough alignment patterns");
     }
 
 }

@@ -40,7 +40,7 @@ function ErrorCorrectionLevel(ordinal, bits, name) {
 
 ErrorCorrectionLevel.forBits = function(bits) {
     if (bits < 0 || bits >= FOR_BITS.length) {
-        throw "ArgumentException";
+        console.error("ArgumentException");
     }
     return FOR_BITS[bits];
 }

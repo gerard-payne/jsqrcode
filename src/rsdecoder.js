@@ -51,7 +51,7 @@ function ReedSolomonDecoder(field) {
         for (var i = 0; i < errorLocations.length; i++) {
             var position = received.length - 1 - this.field.log(errorLocations[i]);
             if (position < 0) {
-                throw "ReedSolomonException Bad error location";
+                console.error("ReedSolomonException Bad error location");
             }
             received[position] = GF256.addOrSubtract(received[position], errorMagnitudes[i]);
         }
@@ -84,7 +84,7 @@ function ReedSolomonDecoder(field) {
             // Divide rLastLast by rLast, with quotient in q and remainder in r
             if (rLast.Zero) {
                 // Oops, Euclidean algorithm already terminated?
-                throw "r_{i-1} was zero";
+                console.error("r_{i-1} was zero");
             }
             r = rLastLast;
             var q = this.field.Zero;
@@ -104,7 +104,7 @@ function ReedSolomonDecoder(field) {
 
         var sigmaTildeAtZero = t.getCoefficient(0);
         if (sigmaTildeAtZero == 0) {
-            throw "ReedSolomonException sigmaTilde(0) was zero";
+            console.error("ReedSolomonException sigmaTilde(0) was zero");
         }
 
         var inverse = this.field.inverse(sigmaTildeAtZero);
@@ -128,7 +128,7 @@ function ReedSolomonDecoder(field) {
             }
         }
         if (e != numErrors) {
-            throw "Error locator degree does not match number of roots";
+            console.error("Error locator degree does not match number of roots");
         }
         return result;
     }

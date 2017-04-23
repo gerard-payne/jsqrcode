@@ -53,7 +53,7 @@ function GF256(primitive) {
     });
     this.buildMonomial = function(degree, coefficient) {
         if (degree < 0) {
-            throw "System.ArgumentException";
+            console.error("System.ArgumentException");
         }
         if (coefficient == 0) {
             return this.zero;
@@ -68,13 +68,13 @@ function GF256(primitive) {
     }
     this.log = function(a) {
         if (a == 0) {
-            throw "System.ArgumentException";
+            console.error("System.ArgumentException");
         }
         return this.logTable[a];
     }
     this.inverse = function(a) {
         if (a == 0) {
-            throw "System.ArithmeticException";
+            console.error("System.ArithmeticException");
         }
         return this.expTable[255 - this.logTable[a]];
     }

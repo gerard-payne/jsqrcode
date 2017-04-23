@@ -39,7 +39,7 @@ Decoder.correctErrors = function(codewordBytes, numDataCodewords) {
         //var corrector = new ReedSolomon(codewordsInts, numECCodewords);
         //corrector.correct();
     } catch (rse) {
-        throw rse;
+        console.error("rse");
     }
     // Copy back into array of bytes -- only need to worry about the bytes that were data
     // We don't care about errors in the error-correction codewords

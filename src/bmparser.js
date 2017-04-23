@@ -26,7 +26,7 @@
 function BitMatrixParser(bitMatrix) {
     var dimension = bitMatrix.Dimension;
     if (dimension < 21 || (dimension & 0x03) != 1) {
-        throw "Error BitMatrixParser";
+        console.error("Error BitMatrixParser");
     }
     this.bitMatrix = bitMatrix;
     this.parsedVersion = null;
@@ -75,7 +75,7 @@ function BitMatrixParser(bitMatrix) {
         if (this.parsedFormatInfo != null) {
             return this.parsedFormatInfo;
         }
-        throw "Error readFormatInformation";
+        console.error("Error readFormatInformation");
     }
     this.readVersion = function() {
 
@@ -116,7 +116,7 @@ function BitMatrixParser(bitMatrix) {
         if (this.parsedVersion != null && this.parsedVersion.DimensionForVersion == dimension) {
             return this.parsedVersion;
         }
-        throw "Error readVersion";
+        console.error("Error readVersion");
     }
     this.readCodewords = function() {
 
@@ -167,7 +167,7 @@ function BitMatrixParser(bitMatrix) {
             readingUp ^= true; // readingUp = !readingUp; // switch directions
         }
         if (resultOffset != version.TotalCodewords) {
-            throw "Error readCodewords";
+            console.error("Error readCodewords");
         }
         return result;
     }

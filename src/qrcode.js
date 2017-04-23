@@ -278,10 +278,10 @@ qrcode.process = function(ctx) {
 
 qrcode.getPixel = function(x, y) {
     if (qrcode.width < x) {
-        throw "point error";
+        console.error("point error");
     }
     if (qrcode.height < y) {
-        throw "point error";
+        console.error("point error");
     }
     var point = (x * 4) + (y * qrcode.width * 4);
     var p = (qrcode.imagedata.data[point] * 33 + qrcode.imagedata.data[point + 1] * 34 + qrcode.imagedata.data[point + 2] * 33) / 100;

@@ -141,19 +141,19 @@ Version.VERSIONS = buildVersions();
 
 Version.getVersionForNumber = function(versionNumber) {
     if (versionNumber < 1 || versionNumber > 40) {
-        throw "ArgumentException";
+        console.error("ArgumentException");
     }
     return Version.VERSIONS[versionNumber - 1];
 }
 
 Version.getProvisionalVersionForDimension = function(dimension) {
     if (dimension % 4 != 1) {
-        throw "Error getProvisionalVersionForDimension";
+        console.error("Error getProvisionalVersionForDimension");
     }
     try {
         return Version.getVersionForNumber((dimension - 17) >> 2);
     } catch (iae) {
-        throw "Error getVersionForNumber";
+        console.error("Error getVersionForNumber");
     }
 }
 
